@@ -9,6 +9,7 @@ The system follows modern backend engineering practices including:
 * **JWT-based Authentication**
 * **Secure Role-Based Authorization**
 * **Dockerized Deployment**
+* **Email Notification Service**
 * **Automated Test Coverage using JaCoCo**
 
 The goal of this project is to demonstrate how a **real-world e-commerce backend** can be structured using industry-standard technologies and clean architecture principles.
@@ -120,21 +121,43 @@ This structure allows future integration with real payment providers such as **S
 
 ---
 
+## 📧 Email Notification System
+
+The application includes an **email notification service** to keep users informed about important account and order activities.
+
+Email notifications are triggered for events such as:
+
+* User registration confirmation
+* Order placement confirmation
+* Payment confirmation
+* Order status updates
+
+The email functionality is implemented using **Spring Boot Mail (JavaMailSender)** and runs asynchronously to avoid slowing down API responses.
+
+Benefits include:
+
+* Improved user experience
+* Instant transaction confirmation
+* Better communication between platform and users
+
+---
+
 # 🏗️ Technology Stack
 
-| Layer             | Technology                  |
-| ----------------- | --------------------------- |
-| Language          | Java 21                     |
-| Framework         | Spring Boot 3               |
-| Build Tool        | Maven                       |
-| Database          | MySQL                       |
-| ORM               | Spring Data JPA / Hibernate |
-| Security          | Spring Security + JWT       |
-| API Documentation | Swagger (OpenAPI 3)         |
-| Object Mapping    | ModelMapper                 |
-| Testing           | JUnit                       |
-| Code Coverage     | JaCoCo                      |
-| Containerization  | Docker + Docker Compose     |
+| Layer | Technology |
+|------|-------------|
+| Language | Java 21 |
+| Framework | Spring Boot 3 |
+| Build Tool | Maven |
+| Database | MySQL |
+| ORM | Spring Data JPA / Hibernate |
+| Security | Spring Security + JWT |
+| API Documentation | Swagger (OpenAPI 3) |
+| Email Service | Spring Boot Mail (JavaMailSender) |
+| Object Mapping | ModelMapper |
+| Testing | JUnit |
+| Code Coverage | JaCoCo |
+| Containerization | Docker + Docker Compose |
 
 ---
 
@@ -182,6 +205,9 @@ src/main/java
 │
 ├── security
 │   └── JWT authentication filters
+│
+├── email
+│   └── Email notification service
 │
 └── config
     └── Spring configuration classes
@@ -382,20 +408,6 @@ http://localhost:8081/swagger-ui/index.html
 
 ---
 
-## Stop Containers
-
-```
-docker compose down
-```
-
-To reset containers and volumes:
-
-```
-docker compose down -v
-```
-
----
-
 # 📦 Repository Contents
 
 This repository includes:
@@ -407,6 +419,7 @@ This repository includes:
 * Postman API collection
 * JaCoCo coverage report
 * ER Diagram
+* Email notification service
 
 ---
 
@@ -417,6 +430,7 @@ This project demonstrates:
 * Designing scalable **REST APIs**
 * Implementing **JWT-based authentication**
 * Building a **layered Spring Boot architecture**
+* Integrating **email notification services**
 * Managing relational databases with **Spring Data JPA**
 * Containerizing backend services with **Docker**
 * Monitoring code quality with **JaCoCo coverage reports**
