@@ -15,6 +15,14 @@ The goal of this project is to demonstrate how a **real-world e-commerce backend
 
 ---
 
+# 🌐 API Base URL
+
+```
+http://localhost:8081/api
+```
+
+---
+
 # 🚀 Core Features
 
 ## 👤 User Management
@@ -224,13 +232,13 @@ The project integrates **Swagger (OpenAPI 3)** for API documentation and testing
 After starting the application, open:
 
 ```
-http://localhost:8080/swagger-ui/index.html
+http://localhost:8081/swagger-ui/index.html
 ```
 
 Swagger allows developers to:
 
 * Explore available REST endpoints
-* Send API requests directly
+* Send API requests directly from the browser
 * Authenticate using JWT tokens
 * Test request payloads and responses
 
@@ -326,7 +334,13 @@ spring.datasource.password=YOUR_PASSWORD
 The backend server will start at:
 
 ```
-http://localhost:8080
+http://localhost:8081
+```
+
+Swagger documentation will be available at:
+
+```
+http://localhost:8081/swagger-ui/index.html
 ```
 
 ---
@@ -351,6 +365,18 @@ SPRING_DATASOURCE_PASSWORD=YOUR_PASSWORD
 
 ```
 docker compose up --build
+```
+
+The API will be available at:
+
+```
+http://localhost:8081
+```
+
+Swagger UI:
+
+```
+http://localhost:8081/swagger-ui/index.html
 ```
 
 ---
@@ -379,6 +405,7 @@ This repository includes:
 * Docker configuration
 * Postman API collection
 * JaCoCo coverage report
+* ER Diagram
 
 ---
 
