@@ -198,6 +198,7 @@ Key entities include:
 * Users
 * Products
 * Cart
+* Cart Items
 * Orders
 * Order Items
 
