@@ -64,19 +64,52 @@ This project demonstrates **professional backend engineering practices** includi
 # 📂 Project Architecture
 
 ```
-controller  → REST API endpoints
-service     → Business logic
-repository  → Database access layer
-entity      → Database models
-dto         → Request/response models
-config      → Security & application configuration
+controller  → REST API endpoints  
+service     → Business logic  
+repository  → Database access layer  
+entity      → Database models  
+dto         → Request/response models  
+config      → Security & application configuration  
 ```
 
 This **layered architecture ensures scalability, maintainability, and clean separation of concerns.**
 
 ---
 
-# 🛠️ Running Locally
+# 🌐 Live API Documentation
+
+The backend is deployed on **Render**.
+
+👉 **Swagger UI:**  
+https://ecommerce-backend-2-tu2o.onrender.com/swagger-ui/index.html
+
+Swagger allows you to:
+
+- Explore all REST APIs
+- Test endpoints directly
+- Authenticate using JWT
+
+### Authentication Steps
+
+1. Login using:
+
+```
+POST /api/users/login
+```
+
+2. Copy the returned **JWT token**
+
+3. Click **Authorize** in Swagger
+
+4. Paste the token like:
+
+```
+Bearer <your_token>
+```
+
+---
+
+# 🛠️ Running Locally (Optional)
 
 ## 1️⃣ Prerequisites
 
@@ -85,25 +118,52 @@ Make sure the following are installed:
 - Java 21+
 - Maven 3.8+
 - MySQL Server
-- Docker Desktop (optional but recommended)
+- Docker Desktop (optional)
 
 ---
 
-## 2️⃣ Build the Project
+## 2️⃣ Database Setup
 
-```bash
-./mvnw clean install
+Create the database:
+
+```sql
+CREATE DATABASE IF NOT EXISTS ecommerce_db;
+```
+
+Then execute:
+
+```
+schema.sql
 ```
 
 ---
 
-## 3️⃣ Run the Application
+## 3️⃣ Configure Database Credentials
 
-```bash
+Update the credentials in:
+
+```
+src/main/resources/application.properties
+```
+
+Example:
+
+```
+spring.datasource.url=jdbc:mysql://<HOST>:<PORT>/<DATABASE>
+spring.datasource.username=<USERNAME>
+spring.datasource.password=<PASSWORD>
+```
+
+---
+
+## 4️⃣ Build and Run
+
+```
+./mvnw clean install
 ./mvnw spring-boot:run
 ```
 
-The application will start on:
+Application will start at:
 
 ```
 http://localhost:8080
@@ -111,101 +171,35 @@ http://localhost:8080
 
 ---
 
-# 📚 API Documentation
+# 🐳 Running with Docker
 
-Once the application is running, access Swagger UI:
+## Configure Environment Variables
 
-👉 **http://localhost:8081/swagger-ui/index.html**
-
-Swagger allows you to:
-
-- Explore all REST APIs
-- Test endpoints directly
-- Authenticate using JWT
-
-### Using Authorization
-
-1. Register or Login using:
+Create a `.env` file in the project root:
 
 ```
-/api/users/login
-```
-
-2. Copy the returned **JWT token**
-
-3. Click **Authorize** in Swagger
-
-4. Paste the token like this:
-
-```
-Bearer <your_token>
+SPRING_DATASOURCE_URL=jdbc:mysql://<HOST>:<PORT>/<DATABASE>?sslMode=REQUIRED
+SPRING_DATASOURCE_USERNAME=<USERNAME>
+SPRING_DATASOURCE_PASSWORD=<PASSWORD>
 ```
 
 ---
 
-# 🐳 Running with Docker (Recommended)
-
-Docker ensures **consistent environments and easy deployment**.
-
----
-
-## 1️⃣ Configure Aiven MySQL
-
-Create a `.env` file in the **project root directory**.
-
-Example:
+## Start Containers
 
 ```
-SPRING_DATASOURCE_URL=jdbc:mysql://mysql-ecom-iiit-c3b7.f.aivencloud.com:23388/defaultdb?sslMode=REQUIRED
-SPRING_DATASOURCE_USERNAME=avnadmin
-SPRING_DATASOURCE_PASSWORD=AVNS_kJFgGwsE0pShWgFB6ZV
-```
-
-These environment variables will automatically be injected into the Spring Boot container.
-
----
-
-## ⚠️ Important Note about Aiven
-
-The **Aiven MySQL instance may automatically power off** due to inactivity.
-
-If the backend fails to connect to the database:
-
-1. Open **Aiven Console**
-2. Navigate to your MySQL service
-3. Click **Power On**
-4. Wait until the service becomes **active**
-
-Then restart the backend container if required.
-
----
-
-## 2️⃣ Start the Application
-
-From the project root directory:
-
-```bash
 docker compose up --build
 ```
 
-This will start:
-
-| Service | URL |
-|------|------|
-| Spring Boot API | http://localhost:8081 |
-| MySQL | Hosted on Aiven Cloud |
-
-Port **8081** is used to avoid conflicts with local applications running on **8080**.
-
 ---
 
-## 3️⃣ Stop the Application
+## Stop Containers
 
 ```
 docker compose down
 ```
 
-To fully reset containers and volumes:
+To reset volumes:
 
 ```
 docker compose down -v
@@ -213,39 +207,15 @@ docker compose down -v
 
 ---
 
-# 🗄️ Database Setup
-
-You must apply the schema manually to the Aiven MySQL database.
-
-Run:
-
-```sql
-CREATE DATABASE IF NOT EXISTS ecommerce_db;
-```
-
-Then execute the provided:
-
-```
-schema.sql
-```
-
-using:
-
-- MySQL client
-- Aiven console
-- MySQL Workbench
-
----
-
 # 📦 Project Deliverables
 
 This repository includes:
 
-- ✅ Complete Source Code
-- ✅ README.md (Project Documentation)
-- ✅ Postman_Collection.json
-- ✅ schema.sql (Database Schema)
-- ✅ docker-compose.yml (Containerized Setup)
+- Complete **Spring Boot Backend Source Code**
+- `README.md` (Project Documentation)
+- `Postman_Collection.json`
+- `schema.sql` (Database Schema)
+- `docker-compose.yml`
 
 ---
 
@@ -254,9 +224,9 @@ This repository includes:
 This project demonstrates:
 
 - Production-ready **Spring Boot backend architecture**
-- **JWT Authentication & Security**
-- **Dockerized deployments**
-- **Cloud database integration (Aiven MySQL)**
+- **JWT Authentication and role-based security**
+- **Dockerized backend deployment**
+- **Cloud database integration**
 - REST API documentation with **Swagger**
 
 ---
